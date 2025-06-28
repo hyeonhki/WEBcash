@@ -286,7 +286,23 @@
             border-radius: 15px;
             margin-top: 20px;
         }
+        .header a:hover {
+            background: rgba(255,255,255,0.3) !important;
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
 
+/* 카드 링크 호버 효과 */
+        .content a[href="/guide/"],
+        .content a[href="/faq/"] {
+            transition: transform 0.3s ease;
+        }
+
+        .content a[href="/guide/"]:hover,
+        .content a[href="/faq/"]:hover {
+            transform: translateY(-5px);
+        }
+        
         @media (max-width: 768px) {
             .calculator {
                 grid-template-columns: 1fr;
@@ -309,6 +325,10 @@
                 <p>알뜰폰 VS 통신 3사 요금제 비교 | 통신비 절약 도우미</p>
             <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
                 MVNO 알뜰폰 요금제와 KT·SKT·LG 요금제를 24개월, 36개월, 48개월로 정확히 계산하고 비교하세요
+            </div>
+            <div style="margin-top: 30px;">
+                <a href="/guide/" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; text-decoration: none; border-radius: 20px; margin: 0 10px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.3);">📖 알뜰폰 가이드</a>
+                <a href="/faq/" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; text-decoration: none; border-radius: 20px; margin: 0 10px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.3);">❓ 자주 묻는 질문</a>
             </div>
         </div>
 
@@ -462,15 +482,20 @@
     
     <!-- 추가 SEO 콘텐츠 -->
     <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px;">
-        <h3 style="color: #2d3436; margin-bottom: 15px;">🔍 인기 검색 키워드</h3>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">알뜰폰 요금제</span>
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">요금제 비교</span>
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">통신비 절약</span>
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">알뜰폰 계산기</span>
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">MVNO 요금제</span>
-            <span style="background: #e9ecef; padding: 8px 12px; border-radius: 20px; font-size: 0.9rem;">KT SKT LG 요금제</span>
-        </div>
+        <h3 style="color: #2d3436; margin-bottom: 15px;">📚 더 자세한 정보</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+         <a href="/guide/" style="display: block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; text-decoration: none; border-radius: 10px; text-align: center; transition: transform 0.3s ease;">
+                <div style="font-size: 1.5rem; margin-bottom: 10px;">📖</div>
+                <div style="font-weight: 600; margin-bottom: 5px;">알뜰폰 완벽 가이드</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">MVNO 업체별 상세 비교</div>
+        </a>
+        <a href="/faq/" style="display: block; background: linear-gradient(135deg, #fd79a8, #fdcb6e); color: white; padding: 20px; text-decoration: none; border-radius: 10px; text-align: center; transition: transform 0.3s ease;">
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">❓</div>
+            <div style="font-weight: 600; margin-bottom: 5px;">자주 묻는 질문</div>
+            <div style="font-size: 0.9rem; opacity: 0.9;">알뜰폰 궁금증 해결</div>
+        </a>
+    </div>
+
     </div>
 </div>
     </div>
