@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알뜰폰 FAQ | 자주 묻는 질문 완벽 정리</title>
+    
+    <!-- SEO 메타 태그 -->
+    <meta name="description" content="알뜰폰에 대한 모든 궁금증을 해결하세요. 요금제 선택, 가입 방법, 해지, 단점 등 알뜰폰 관련 자주 묻는 질문 20가지를 상세히 답변합니다.">
+    <meta name="keywords" content="알뜰폰 FAQ, 알뜰폰 단점, 알뜰폰 가입방법, 알뜰폰 해지, MVNO 후기, 알뜰폰 궁금한점">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="알뜰폰 FAQ - 자주 묻는 질문 완벽 정리">
+    <meta property="og:description" content="알뜰폰 가입 전 꼭 알아야 할 모든 정보">
+    <meta property="og:type" content="article">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .category-tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .category-tab {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            background: #f8f9fa;
+            color: #666;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .category-tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .faq-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3436;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: #f8f9fa;
+        }
+        
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+        
+        .faq-question.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 0 0 10px 10px;
+            display: none;
+            border-left: 4px solid #667eea;
+        }
+        
+        .faq-answer.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 300px;
+            }
+        }
+        
+        .faq-answer p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #74b9ff20, #0984e320);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #74b9ff;
+            margin: 15px 0;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #00b894;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-container {
+                padding: 20px;
+            }
+            
+            .category-tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">🏠 알뜰폰 요금제 계산기</a> > 알뜰폰 FAQ
+        </div>
+        
+        <div class="header">
+            <h1>❓ 알뜰폰 FAQ</h1>
+            <p>알뜰폰에 대한 모든 궁금증을 해결해드립니다</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="궁금한 내용을 검색하세요... (예: 해지, 단점, 가입방법)">
+        </div>
+        
+        <div class="category-tabs">
+            <button class="category-tab active" data-category="all">전체</button>
+            <button class="category-tab" data-category="basic">기본정보</button>
+            <button class="category-tab" data-category="plan">요금제</button>
+            <button class="category-tab" data-category="signup">가입/해지</button>
+            <button class="category-tab" data-category="service">서비스</button>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item" data-category="basic">
+                <button class="faq-question">
+                    Q1. 알뜰폰이 정확히 무엇인가요?
+                </button>
+                <div class="faq-answer">
+                    <p>알뜰폰은 MVNO(Mobile Virtual Network Operator, 가상이동통신망사업자)가 제공하는 통신 서비스입니다.</p>
+                    <div class="highlight">
+                        <p><strong>핵심 특징:</strong></p>
+                        <ul>
+                            <li>KT, SKT, LG의 네트워크 인프라를 임대받아 서비스 제공</li>
+                            <li>동일한 통신 품질, 더 저렴한 요금</li>
+                            <li>별도의 자체 기지국 없이 운영</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="basic">
+                <button class="faq-question">
+                    Q2. 알뜰폰의 통신 품질은 어떤가요?
+                </button>
+                <div class="faq-answer">
+                    <p>알뜰폰은 기존 통신 3사와 <strong>동일한 네트워크</strong>를 사용하므로 통신 품질에는 차이가 없습니다.</p>
+                    <p>다만, 네트워크 혼잡 시간대에는 기존 통신사 고객이 우선순위를 가질 수 있어 약간의 속도 차이가 있을 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="plan">
+                <button class="faq-question">
+                    Q3. 알뜰폰 요금제 종류는 어떻게 되나요?
+                </button>
+                <div class="faq-answer">
+                    <p>주요 알뜰폰 업체별 대표 요금제:</p>
+                    <ul>
+                        <li><strong>기본형:</strong> 월 1-2만원 (음성+문자+데이터 3-5GB)</li>
+                        <li><strong>표준형:</strong> 월 2-3만원 (음성무제한+데이터 10-30GB)</li>
+                        <li><strong>프리미엄형:</strong> 월 3-4만원 (음성무제한+데이터 50GB 이상)</li>
+                    </ul>
+                    <div class="highlight">
+                        <p>기존 통신 3사 대비 평균 30-50% 저렴한 요금으로 이용 가능합니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="basic">
+                <button class="faq-question">
+                    Q4. 알뜰폰의 단점은 무엇인가요?
+                </button>
+                <div class="faq-answer">
+                    <p>알뜰폰 가입 전 고려해
