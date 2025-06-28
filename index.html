@@ -361,7 +361,7 @@
                     <span class="badge">필수</span>
                 </h2>
                 <div class="input-group">
-                    <label>구매가격 (원)</label>
+                    <label>기기 구매가격 (원)</label>
                     <input type="number" id="selfPayPrice" placeholder="800000" value="800000">
                 </div>
                 <div class="input-group">
@@ -405,7 +405,7 @@
                     <label for="enableCarrier">통신사 핸드폰과 비교</label>
                 </div>
                 <div class="input-group">
-                    <label>구매가격 (원)</label>
+                    <label>기기 구매가격 (원)</label>
                     <input type="number" id="carrierPrice" placeholder="200000" disabled>
                 </div>
                 <div class="input-group">
@@ -531,7 +531,7 @@
             const results = [{
                 title: '자급제 폰',
                 breakdown: [
-                    { label: '구매가격', value: selfPayPrice.toLocaleString() + '원' },
+                    { label: '기기 구매가격', value: selfPayPrice.toLocaleString() + '원' },
                     { label: `월 요금 × ${selfPayPeriod}개월`, value: (selfPayMonthly * selfPayPeriod).toLocaleString() + '원' }
                 ],
                 total: selfPayTotal,
@@ -567,7 +567,7 @@
                 results.push({
                     title: '통신사 핸드폰',
                     breakdown: [
-                        { label: '구매가격', value: carrierPrice.toLocaleString() + '원' },
+                        { label: '기기 구매가격', value: carrierPrice.toLocaleString() + '원' },
                         { label: '필수 요금제 × 6개월', value: requiredCost.toLocaleString() + '원' },
                         { label: `이후 요금제 × ${carrierPeriod - 6}개월`, value: afterCost.toLocaleString() + '원' }
                     ],
