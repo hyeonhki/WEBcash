@@ -440,6 +440,33 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .coupang-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.coupang-banner img {
+  max-width: 100%;
+  height: auto;
+  max-height: 240px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.coupang-banner img:hover {
+  transform: scale(1.05);
+}
+
+/* 모바일에서 크기 조정 */
+@media (max-width: 768px) {
+  .coupang-banner img {
+    max-height: 180px;
+  }
+}
     </style>
 </head>
 <body>
@@ -457,12 +484,12 @@
         </div>
 
         <!-- AdSense 광고 영역 -->
-        <div class="ad-space">
-            <div class="ad-placeholder">
-                <div style="background: #e9ecef; padding: 20px; border-radius: 8px; color: #6c757d; text-align: center;">
-                    🚀 Google AdSense 승인 후 광고가 표시됩니다
-                </div>
-                <noscript>광고 영역 (JavaScript를 활성화해주세요)</noscript>
+       <div class="ad-space">
+            <div class="coupang-banner">
+                <a href="https://link.coupang.com/a/cBGnkz" target="_blank" referrerpolicy="unsafe-url">
+                    <img src="https://image12.coupangcdn.com/image/affiliate/banner/37da5baabfa3047a15ae928f533bdadb@2x.jpg" 
+                        alt="Apple 정품 아이폰 16 자급제, 화이트, 128GB">
+                </a>
             </div>
         </div>
 
