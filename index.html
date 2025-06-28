@@ -48,6 +48,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    
     <style>
         * {
             margin: 0;
@@ -57,7 +58,8 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffffff;
+            color: #2d3436;
             min-height: 100vh;
             padding: 20px;
         }
@@ -69,10 +71,11 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             overflow: hidden;
+            border: 1px solid #e9ecef;
         }
 
         .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 40px;
             text-align: center;
@@ -87,6 +90,27 @@
         .header p {
             font-size: 1.2rem;
             opacity: 0.9;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            margin: 0 10px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
         .ad-space {
@@ -111,6 +135,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
+            background: #ffffff;
         }
 
         .section {
@@ -127,8 +152,8 @@
         }
 
         .section.required {
-            border-color: #ff6b6b;
-            background: linear-gradient(135deg, #fff5f5, #fff);
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0f4ff, #fff);
         }
 
         .section.optional {
@@ -153,7 +178,7 @@
         }
 
         .required .badge {
-            background: #ff6b6b;
+            background: #667eea;
             color: white;
         }
 
@@ -198,9 +223,26 @@
             width: auto;
         }
 
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .input-row input {
+            margin: 0;
+        }
+
+        .input-row span {
+            padding: 12px 8px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
         .calculate-btn {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, #00b894, #00cec9);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 20px 40px;
@@ -214,13 +256,14 @@
 
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,184,148,0.3);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .results {
             padding: 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: #ffffff;
+            color: #2d3436;
+            border-top: 1px solid #e9ecef;
             display: none;
         }
 
@@ -232,6 +275,7 @@
             font-size: 2rem;
             margin-bottom: 30px;
             text-align: center;
+            color: #2d3436;
         }
 
         .comparison-grid {
@@ -242,17 +286,28 @@
         }
 
         .result-card {
-            background: rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
             padding: 25px;
             border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .result-card.winner {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0f4ff, #ffffff);
         }
 
         .result-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             text-align: center;
+            color: #2d3436;
         }
 
         .cost-breakdown {
@@ -264,7 +319,7 @@
             justify-content: space-between;
             margin-bottom: 8px;
             padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid #e9ecef;
         }
 
         .total-cost {
@@ -273,8 +328,9 @@
             text-align: center;
             margin-top: 15px;
             padding: 15px;
-            background: rgba(255,255,255,0.2);
+            background: #f8f9fa;
             border-radius: 10px;
+            border: 2px solid #e9ecef;
         }
 
         .savings {
@@ -282,38 +338,106 @@
             font-size: 1.5rem;
             font-weight: 700;
             padding: 20px;
-            background: rgba(0,184,148,0.3);
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
             border-radius: 15px;
             margin-top: 20px;
         }
-        .header a:hover {
-            background: rgba(255,255,255,0.3) !important;
-            transform: translateY(-2px);
-            transition: all 0.3s ease;
+
+        .info-section {
+            padding: 40px;
+            background: #f8f9fa;
+            color: #2d3436;
         }
 
-/* 카드 링크 호버 효과 */
-        .content a[href="/guide/"],
-        .content a[href="/faq/"] {
+        .info-section h2 {
+            margin-bottom: 20px;
+            color: #2d3436;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .link-card {
+            display: block;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .content a[href="/guide/"]:hover,
-        .content a[href="/faq/"]:hover {
+        .link-card:hover {
             transform: translateY(-5px);
+        }
+
+        .link-card.guide {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .link-card.faq {
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .link-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         @media (max-width: 768px) {
             .calculator {
                 grid-template-columns: 1fr;
+                padding: 20px;
             }
 
             .header h1 {
                 font-size: 2rem;
             }
 
-            .calculator {
-                padding: 20px;
+            .nav-links a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -322,55 +446,40 @@
     <div class="container">
         <div class="header">
             <h1>📱 알뜰폰 요금제 계산기</h1>
-                <p>알뜰폰 VS 통신 3사 요금제 비교 | 통신비 절약 도우미</p>
+            <p>알뜰폰 VS 통신 3사 요금제 비교 | 통신비 절약 도우미</p>
             <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
                 MVNO 알뜰폰 요금제와 KT·SKT·LG 요금제를 24개월, 36개월, 48개월로 정확히 계산하고 비교하세요
             </div>
-            <div style="margin-top: 30px;">
-                <a href="https://알뜰폰요금제계산기.com/guide/" ...>📖 알뜰폰 가이드</a>
-                <a href="https://알뜰폰요금제계산기.com/faq/" ...>❓ 자주 묻는 질문</a>            </div>
+            <div class="nav-links">
+                <a href="./guide/">📖 알뜰폰 가이드</a>
+                <a href="./faq/">❓ 자주 묻는 질문</a>
             </div>
+        </div>
 
         <!-- AdSense 광고 영역 -->
         <div class="ad-space">
             <div class="ad-placeholder">
-                <!-- Google AdSense 광고 코드가 여기에 들어갑니다
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXX"
-                     data-ad-slot="XXXXXXXXXX"
-                     data-ad-format="auto"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            -->
-            <div style="background: #e9ecef; padding: 20px; border-radius: 8px; color: #6c757d; text-align: center;">
-            🚀 Google AdSense 승인 후 광고가 표시됩니다
-            </div>
-            
+                <div style="background: #e9ecef; padding: 20px; border-radius: 8px; color: #6c757d; text-align: center;">
+                    🚀 Google AdSense 승인 후 광고가 표시됩니다
+                </div>
                 <noscript>광고 영역 (JavaScript를 활성화해주세요)</noscript>
             </div>
         </div>
 
         <div class="calculator">
-            <!-- 자급제 (필수) -->
+            <!-- 기존 요금제 (필수) -->
             <div class="section required">
                 <h2>
-                    알뜰폰 요금제
+                    기존 요금제
                     <span class="badge">필수</span>
                 </h2>
                 <div class="input-group">
-                    <label>기기 구매가격 (원)</label>
-                    <input type="number" id="selfPayPrice" placeholder="800000" value="800000">
-                </div>
-                <div class="input-group">
-                    <label>알뜰폰 월 요금제 (원)</label>
-                    <input type="number" id="selfPayMonthly" placeholder="25000" value="25000">
+                    <label>기존 월 요금 (원)</label>
+                    <input type="number" id="existingMonthly" placeholder="60000" value="60000">
                 </div>
                 <div class="input-group">
                     <label>사용 예상 기간</label>
-                    <select id="selfPayPeriod">
+                    <select id="existingPeriod">
                         <option value="24">24개월</option>
                         <option value="36" selected>36개월</option>
                         <option value="48">48개월</option>
@@ -378,23 +487,35 @@
                 </div>
             </div>
 
-            <!-- 기존 핸드폰 -->
+            <!-- 알뜰폰 요금제 (선택1) -->
             <div class="section optional">
                 <h2>
-                    기존 요금제
+                    알뜰폰 요금제
                     <span class="badge">선택 1</span>
                 </h2>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="enableExisting">
-                    <label for="enableExisting">기존 핸드폰과 비교</label>
+                    <input type="checkbox" id="enableSelfPay">
+                    <label for="enableSelfPay">알뜰폰과 비교</label>
                 </div>
                 <div class="input-group">
-                    <label>기존 월 요금 (원)</label>
-                    <input type="number" id="existingMonthly" placeholder="60000" disabled>
+                    <label>구매가격 (원)</label>
+                    <input type="number" id="selfPayPrice" placeholder="800000" disabled>
+                </div>
+                <div class="input-group">
+                    <label>알뜰폰 월 요금제 (원)</label>
+                    <input type="number" id="selfPayMonthly" placeholder="25000" disabled>
+                </div>
+                <div class="input-group">
+                    <label>사용 예상 기간</label>
+                    <select id="selfPayPeriod" disabled>
+                        <option value="24">24개월</option>
+                        <option value="36" selected>36개월</option>
+                        <option value="48">48개월</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- 통신사 핸드폰 -->
+            <!-- 통신사 3사 요금제 (선택2) -->
             <div class="section optional">
                 <h2>
                     통신사 3사 요금제
@@ -405,12 +526,22 @@
                     <label for="enableCarrier">통신사 핸드폰과 비교</label>
                 </div>
                 <div class="input-group">
-                    <label>기기 구매가격 (원)</label>
+                    <label>구매가격 (원)</label>
                     <input type="number" id="carrierPrice" placeholder="200000" disabled>
                 </div>
-                <div class="input-group">
-                    <label>6개월 필수 요금제 (원)</label>
-                    <input type="number" id="carrierRequired" placeholder="80000" disabled>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="noContract" disabled>
+                    <label for="noContract">필수 요금제 약정없음</label>
+                </div>
+                <div class="input-group" id="contractGroup">
+                    <label>필수 요금제 기간 및 월 요금</label>
+                    <div class="input-row">
+                        <input type="number" id="contractMonths" placeholder="6" value="6" disabled>
+                        <span>개월</span>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input type="number" id="carrierRequired" placeholder="80000" disabled>
+                    </div>
                 </div>
                 <div class="input-group">
                     <label>이후 요금제 (원)</label>
@@ -427,7 +558,7 @@
             </div>
 
             <button class="calculate-btn" onclick="calculateComparison()">
-                💰 알뜰폰 요금제 비교 계산하기
+                💰 요금제 비교 계산하기
             </button>
         </div>
 
@@ -442,113 +573,125 @@
         <!-- 하단 AdSense 광고 영역 -->
         <div class="ad-space">
             <div class="ad-placeholder">
-                <!--
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXX"
-                     data-ad-slot="XXXXXXXXXX"
-                     data-ad-format="auto"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            -->
-            <div style="background: #e9ecef; padding: 20px; border-radius: 8px; color: #6c757d; text-align: center;">
-            💰 Advertise Space
-            </div>
-
+                <div style="background: #e9ecef; padding: 20px; border-radius: 8px; color: #6c757d; text-align: center;">
+                    💰 추가 수익을 위한 광고 공간
+                </div>
                 <noscript>광고 영역 (JavaScript를 활성화해주세요)</noscript>
             </div>
         </div>
 
         <!-- SEO용 추가 콘텐츠 -->
-        <div style="padding: 40px; background: #f8f9fa; color: #2d3436;">
-    <h2 style="margin-bottom: 20px; color: #2d3436;">💡 알뜰폰 요금제 완벽 가이드</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
-        <div>
-            <h3 style="color: #667eea; margin-bottom: 10px;">알뜰폰 요금제란?</h3>
-            <p>MVNO(가상이동통신망사업자)가 제공하는 알뜰폰 요금제는 KT, SKT, LG 통신사의 망을 임대받아 더 저렴한 요금제로 서비스를 제공합니다. 동일한 품질의 통신 서비스를 받으면서도 월 요금제 비용을 크게 절약할 수 있는 것이 알뜰폰 요금제의 가장 큰 장점입니다.</p>
-        </div>
-        <div>
-            <h3 style="color: #667eea; margin-bottom: 10px;">알뜰폰 요금제 절약 효과</h3>
-            <p>자급제 핸드폰과 알뜰폰 요금제 조합으로 기존 통신 3사 요금제 대비 월 2-3만원, 연간 최대 50만원 이상 통신비를 절약할 수 있습니다. 본 요금제 계산기로 정확한 절약 금액을 확인해보세요.</p>
-        </div>
-        <div>
-            <h3 style="color: #667eea; margin-bottom: 10px;">요금제 비교 계산기 사용법</h3>
-            <p>알뜰폰 요금제 계산기는 24개월, 36개월, 48개월 사용 기간별로 총비용을 정확히 계산합니다. 자급제 핸드폰 구매비용과 월 요금제를 입력하여 최적의 통신비 절약 방법을 찾아보세요.</p>
-        </div>
-    </div>
-    
-    <!-- 추가 SEO 콘텐츠 -->
-    <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px;">
-        <h3 style="color: #2d3436; margin-bottom: 15px;">📚 더 자세한 정보</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-         <a href="/guide/" style="display: block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; text-decoration: none; border-radius: 10px; text-align: center; transition: transform 0.3s ease;">
-                <div style="font-size: 1.5rem; margin-bottom: 10px;">📖</div>
-                <div style="font-weight: 600; margin-bottom: 5px;">알뜰폰 완벽 가이드</div>
-                <div style="font-size: 0.9rem; opacity: 0.9;">MVNO 업체별 상세 비교</div>
-        </a>
-        <a href="/faq/" style="display: block; background: linear-gradient(135deg, #fd79a8, #fdcb6e); color: white; padding: 20px; text-decoration: none; border-radius: 10px; text-align: center; transition: transform 0.3s ease;">
-            <div style="font-size: 1.5rem; margin-bottom: 10px;">❓</div>
-            <div style="font-weight: 600; margin-bottom: 5px;">자주 묻는 질문</div>
-            <div style="font-size: 0.9rem; opacity: 0.9;">알뜰폰 궁금증 해결</div>
-        </a>
-    </div>
+        <div class="info-section">
+            <h2>💡 알뜰폰 요금제 완벽 가이드</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>알뜰폰 요금제란?</h3>
+                    <p>MVNO(가상이동통신망사업자)가 제공하는 알뜰폰 요금제는 KT, SKT, LG 통신사의 망을 임대받아 더 저렴한 요금제로 서비스를 제공합니다. 동일한 품질의 통신 서비스를 받으면서도 월 요금제 비용을 크게 절약할 수 있는 것이 알뜰폰 요금제의 가장 큰 장점입니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3>알뜰폰 요금제 절약 효과</h3>
+                    <p>자급제 핸드폰과 알뜰폰 요금제 조합으로 기존 통신 3사 요금제 대비 월 2-3만원, 연간 최대 50만원 이상 통신비를 절약할 수 있습니다. 본 요금제 계산기로 정확한 절약 금액을 확인해보세요.</p>
+                </div>
+                <div class="info-card">
+                    <h3>요금제 비교 계산기 사용법</h3>
+                    <p>알뜰폰 요금제 계산기는 24개월, 36개월, 48개월 사용 기간별로 총비용을 정확히 계산합니다. 자급제 핸드폰 구매비용과 월 요금제를 입력하여 최적의 통신비 절약 방법을 찾아보세요.</p>
+                </div>
+            </div>
 
-    </div>
-</div>
+            <!-- 추가 SEO 콘텐츠 -->
+            <div>
+                <h3 style="color: #2d3436; margin-bottom: 15px;">📚 더 자세한 정보</h3>
+                <div class="link-grid">
+                    <a href="./guide/" class="link-card guide">
+                        <div class="link-icon">📖</div>
+                        <div class="link-title">알뜰폰 완벽 가이드</div>
+                        <div class="link-desc">MVNO 업체별 상세 비교</div>
+                    </a>
+                    <a href="./faq/" class="link-card faq">
+                        <div class="link-icon">❓</div>
+                        <div class="link-title">자주 묻는 질문</div>
+                        <div class="link-desc">알뜰폰 궁금증 해결</div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KPXGFQP00"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-5KPXGFQP00');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5KPXGFQP00');
     </script>
 
     <script>
         // 체크박스 이벤트 리스너
-        document.getElementById('enableExisting').addEventListener('change', function() {
-            const inputs = document.querySelector('.section.optional:nth-child(2)').querySelectorAll('input:not([type="checkbox"])');
+        document.getElementById('enableSelfPay').addEventListener('change', function() {
+            const inputs = document.querySelector('.section.optional:nth-child(2)').querySelectorAll('input:not([type="checkbox"]), select');
             inputs.forEach(input => input.disabled = !this.checked);
         });
 
         document.getElementById('enableCarrier').addEventListener('change', function() {
             const inputs = document.querySelector('.section.optional:nth-child(3)').querySelectorAll('input:not([type="checkbox"]), select');
             inputs.forEach(input => input.disabled = !this.checked);
+            
+            document.getElementById('noContract').disabled = !this.checked;
+            if (!this.checked) {
+                document.getElementById('noContract').checked = false;
+                updateContractInputs();
+            }
         });
 
+        document.getElementById('noContract').addEventListener('change', updateContractInputs);
+
+        function updateContractInputs() {
+            const isNoContract = document.getElementById('noContract').checked;
+            const contractGroup = document.getElementById('contractGroup');
+            const contractMonths = document.getElementById('contractMonths');
+            const carrierRequired = document.getElementById('carrierRequired');
+
+            if (isNoContract) {
+                contractGroup.style.opacity = '0.5';
+                contractMonths.disabled = true;
+                carrierRequired.disabled = true;
+            } else {
+                contractGroup.style.opacity = '1';
+                const isCarrierEnabled = !document.getElementById('enableCarrier') || document.getElementById('enableCarrier').checked;
+                contractMonths.disabled = !isCarrierEnabled;
+                carrierRequired.disabled = !isCarrierEnabled;
+            }
+        }
+
         function calculateComparison() {
-            // 자급제 계산
-            const selfPayPrice = parseInt(document.getElementById('selfPayPrice').value) || 0;
-            const selfPayMonthly = parseInt(document.getElementById('selfPayMonthly').value) || 0;
-            const selfPayPeriod = parseInt(document.getElementById('selfPayPeriod').value);
+            // 기존 요금제 계산 (필수)
+            const existingMonthly = parseInt(document.getElementById('existingMonthly').value) || 0;
+            const existingPeriod = parseInt(document.getElementById('existingPeriod').value);
+            const existingTotal = existingMonthly * existingPeriod;
 
-            const selfPayTotal = selfPayPrice + (selfPayMonthly * selfPayPeriod);
-
-            // 결과 배열
             const results = [{
-                title: '자급제 폰',
+                title: '기존 요금제',
                 breakdown: [
-                    { label: '기기 구매가격', value: selfPayPrice.toLocaleString() + '원' },
-                    { label: `월 요금 × ${selfPayPeriod}개월`, value: (selfPayMonthly * selfPayPeriod).toLocaleString() + '원' }
+                    {label: `월 요금 × ${existingPeriod}개월`, value: existingTotal.toLocaleString() + '원'}
                 ],
-                total: selfPayTotal,
+                total: existingTotal,
                 isBase: true
             }];
 
-            // 기존 핸드폰 비교
-            if (document.getElementById('enableExisting').checked) {
-                const existingMonthly = parseInt(document.getElementById('existingMonthly').value) || 0;
-                const existingTotal = existingMonthly * selfPayPeriod;
+            // 알뜰폰 비교
+            if (document.getElementById('enableSelfPay').checked) {
+                const selfPayPrice = parseInt(document.getElementById('selfPayPrice').value) || 0;
+                const selfPayMonthly = parseInt(document.getElementById('selfPayMonthly').value) || 0;
+                const selfPayPeriod = parseInt(document.getElementById('selfPayPeriod').value);
+                const selfPayTotal = selfPayPrice + (selfPayMonthly * selfPayPeriod);
 
                 results.push({
-                    title: '기존 핸드폰',
+                    title: '알뜰폰',
                     breakdown: [
-                        { label: `월 요금 × ${selfPayPeriod}개월`, value: existingTotal.toLocaleString() + '원' }
+                        {label: '구매가격', value: selfPayPrice.toLocaleString() + '원'},
+                        {label: `월 요금 × ${selfPayPeriod}개월`, value: (selfPayMonthly * selfPayPeriod).toLocaleString() + '원'}
                     ],
-                    total: existingTotal,
+                    total: selfPayTotal,
                     isBase: false
                 });
             }
@@ -556,21 +699,31 @@
             // 통신사 핸드폰 비교
             if (document.getElementById('enableCarrier').checked) {
                 const carrierPrice = parseInt(document.getElementById('carrierPrice').value) || 0;
-                const carrierRequired = parseInt(document.getElementById('carrierRequired').value) || 0;
-                const carrierAfter = parseInt(document.getElementById('carrierAfter').value) || 0;
                 const carrierPeriod = parseInt(document.getElementById('carrierPeriod').value);
+                const carrierAfter = parseInt(document.getElementById('carrierAfter').value) || 0;
+                const isNoContract = document.getElementById('noContract').checked;
+                
+                let carrierTotal = carrierPrice;
+                let breakdown = [{label: '구매가격', value: carrierPrice.toLocaleString() + '원'}];
 
-                const requiredCost = carrierRequired * 6;
-                const afterCost = carrierAfter * (carrierPeriod - 6);
-                const carrierTotal = carrierPrice + requiredCost + afterCost;
+                if (isNoContract) {
+                    const afterCost = carrierAfter * carrierPeriod;
+                    carrierTotal += afterCost;
+                    breakdown.push({label: `월 요금 × ${carrierPeriod}개월`, value: afterCost.toLocaleString() + '원'});
+                } else {
+                    const contractMonths = parseInt(document.getElementById('contractMonths').value) || 6;
+                    const carrierRequired = parseInt(document.getElementById('carrierRequired').value) || 0;
+                    const requiredCost = carrierRequired * contractMonths;
+                    const afterCost = carrierAfter * (carrierPeriod - contractMonths);
+                    
+                    carrierTotal += requiredCost + afterCost;
+                    breakdown.push({label: `필수 요금제 × ${contractMonths}개월`, value: requiredCost.toLocaleString() + '원'});
+                    breakdown.push({label: `이후 요금제 × ${carrierPeriod - contractMonths}개월`, value: afterCost.toLocaleString() + '원'});
+                }
 
                 results.push({
                     title: '통신사 핸드폰',
-                    breakdown: [
-                        { label: '기기 구매가격', value: carrierPrice.toLocaleString() + '원' },
-                        { label: '필수 요금제 × 6개월', value: requiredCost.toLocaleString() + '원' },
-                        { label: `이후 요금제 × ${carrierPeriod - 6}개월`, value: afterCost.toLocaleString() + '원' }
-                    ],
+                    breakdown: breakdown,
                     total: carrierTotal,
                     isBase: false
                 });
@@ -585,23 +738,25 @@
 
             grid.innerHTML = '';
 
-            const selfPayTotal = results[0].total;
-            let minTotal = selfPayTotal;
-            let bestOption = '자급제 폰';
+            const baseTotal = results[0].total;
+            let minTotal = baseTotal;
+            let bestOption = results[0].title;
             let maxSavings = 0;
 
-            // 가장 저렴한 옵션 찾기
             results.forEach(result => {
                 if (result.total < minTotal) {
                     minTotal = result.total;
                     bestOption = result.title;
-                    maxSavings = selfPayTotal - result.total;
+                    maxSavings = baseTotal - result.total;
                 }
             });
 
             results.forEach(result => {
                 const card = document.createElement('div');
                 card.className = 'result-card';
+                if (result.total === minTotal) {
+                    card.classList.add('winner');
+                }
 
                 const breakdown = result.breakdown.map(item =>
                     `<div class="cost-item">
@@ -610,10 +765,10 @@
                     </div>`
                 ).join('');
 
-                const difference = result.total - selfPayTotal;
+                const difference = result.total - baseTotal;
 
                 card.innerHTML = `
-                    <h3>${result.title} ${result.total === minTotal ? '🏆' : ''}</h3>
+                    <h3>${result.title}${result.total === minTotal ? ' 🏆' : ''}</h3>
                     <div class="cost-breakdown">
                         ${breakdown}
                     </div>
@@ -622,30 +777,28 @@
                     </div>
                     ${!result.isBase ?
                         `<div style="text-align: center; margin-top: 10px; color: ${difference < 0 ? '#00b894' : '#e17055'};">
-                            ${difference < 0 ? '💰 자급제보다 ' + Math.abs(difference).toLocaleString() + '원 저렴' :
-                              difference > 0 ? '💸 자급제보다 ' + difference.toLocaleString() + '원 비쌈' : '⚖️ 자급제와 동일'}
-                        </div>` :
-                        difference === 0 ? '<div style="text-align: center; margin-top: 10px; color: #74b9ff;">📱 기준 비교</div>' : ''
+                            ${difference < 0 ? '💰 기존보다 ' + Math.abs(difference).toLocaleString() + '원 저렴' :
+                              difference > 0 ? '💸 기존보다 ' + difference.toLocaleString() + '원 비쌈' : '⚖️ 기존과 동일'}
+                        </div>` : ''
                     }
                 `;
 
                 grid.appendChild(card);
             });
 
-            // 최종 결론 표시
             let conclusionMessage = '';
-            if (bestOption === '자급제 폰') {
+            if (bestOption === '기존 요금제') {
                 if (results.length > 1) {
                     conclusionMessage = `
                         <div class="savings">
-                            🎉 자급제 폰이 가장 경제적인 선택입니다!
+                            🎉 기존 요금제가 가장 경제적입니다!
                         </div>
                     `;
                 }
             } else {
                 conclusionMessage = `
                     <div class="savings">
-                        💡 ${bestOption}이 자급제보다 ${maxSavings.toLocaleString()}원 저렴합니다!
+                        💡 ${bestOption}이 기존보다 ${maxSavings.toLocaleString()}원 저렴합니다!
                     </div>
                 `;
             }
